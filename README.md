@@ -19,12 +19,15 @@ COVID-19 health declaration with admin dashboard WEB APP.
 ## Document Structure
     > api
     > class
+    > contributors
     > css
+    > fonts
     > img
     > js
     > pages
     > plugins
     > private
+    > sql
     > index.html
     > README.md
 
