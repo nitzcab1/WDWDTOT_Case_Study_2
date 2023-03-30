@@ -31,3 +31,5 @@ COVID-19 health declaration with admin dashboard WEB APP.
 ## References
 * Template: [AdminLTE 3](https://adminlte.io/themes/v3/)
 * Master list for Country Sql : [sql-list-of-countries](https://github.com/davepartner/sql-list-of-countries)
+* SQL POPULATOR : [Database Populator](https://www.luigicaradonna.it/projects/populator)
+

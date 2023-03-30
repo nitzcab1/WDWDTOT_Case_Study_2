@@ -1,0 +1,436 @@
+<div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-12">
+        <button
+          type="button"
+          id="addrow"
+          data-toggle="modal"
+          data-target="#modelId"
+          class="btn btn-primary"
+          onclick="$.survey_functions.clearform()"
+        >
+          Add Profile
+        </button>
+      </div>
+    </div>
+    <table id="surveyDataTableList" class="table table-dark table-bordered table-striped" width="100%">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Age</th>
+          <th scope="col">Mobile</th>
+          <th scope="col">Body</th>
+          <th scope="col">Diagnosed</th>
+          <th scope="col">Encounter</th>
+          <th scope="col">Vacinated</th>
+          <th scope="col">Country</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody id="items"></tbody>
+
+      <!-- Modal -->
+    </table>
+    <div
+      class="modal fade"
+      id="modelId"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modelTitleId"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Profile</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="survey-form-container">
+            <form id="survey-form">
+              <input type="hidden" name="id" id="id" />
+              <div class="form-group">
+                <label for="name">Name *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  id="name"
+                  placeholder="Name"
+                  required="required"
+                />
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please enter a First Name.</div>
+              </div>
+              
+              <div class="form-group">
+                <label for="gender">Gender</label>
+                <select
+                  id="gender"
+                  name="gender"
+                  class="custom-select"
+                  required="required"
+                >
+                  <option value="">Select Gender *</option>
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                </select>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please select a Gender.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="age">Age *</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="age"
+                  id="age"
+                  placeholder="Age"
+                  required="required"
+                  min="1" max="100" step="1"
+                />
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please enter an Age.</div>
+              </div>
+              <div class="form-group">
+                <label for="mobile">Mobile *</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="mobile"
+                  id="mobile"
+                  placeholder="Mobile"
+                  required="required"
+                  min="09000000001" max="09999999999"
+                />
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please enter an Age.</div>
+              </div>
+              <div class="form-group">
+                <label for="body_temp">Body Temp *</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="body_temp"
+                  id="body_temp"
+                  placeholder="Body Temp"
+                  required="required"
+                  min="33.00" max="45" step="0.01"
+                />
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please enter a Body Temp.</div>
+              </div>
+              <div class="form-group">
+                <label for="diagnosed">COVID-19 DIAGNOSED: (YES/NO) *</label>
+                <select
+                  id="diagnosed"
+                  name="diagnosed"
+                  class="custom-select"
+                  required="required"
+                >
+                  <option value="">Select</option>
+                  <option value="0">NO</option>
+                  <option value="1">YES</option>
+                </select>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please select a Gender.</div>
+              </div>
+              <div class="form-group">
+                <label for="encounter">COVID-19 Encounter: (YES/NO) *</label>
+                <select
+                  id="encounter"
+                  name="encounter"
+                  class="custom-select"
+                  required="required"
+                >
+                  <option value="">Select</option>
+                  <option value="0">NO</option>
+                  <option value="1">YES</option>
+                </select>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please select a Gender.</div>
+              </div>
+              <div class="form-group">
+                <label for="vacinated">COVID-19 VACINATED: (YES/NO) *</label>
+                <select
+                  id="vacinated"
+                  name="vacinated"
+                  class="custom-select"
+                  required="required"
+                >
+                  <option value="">Select</option>
+                  <option value="0">NO</option>
+                  <option value="1">YES</option>
+                </select>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please select a Gender.</div>
+              </div>
+              <div class="form-group">
+                
+                <label for="country_id">Nationality</label>
+                <select
+                  id="country_id"
+                  name="country_id"
+                  class="custom-select"
+                  required="required"
+                >
+                  <option value="">Select Country</option>
+                </select>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please select a gender.</div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary" id="save">
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+
+$.survey_functions = {
+    
+    refreshsurveyList: function()
+    {
+        if ( ! $.fn.DataTable.isDataTable( '#surveyDataTableList' ) ) 
+        {
+            $.survey_functions.survey_table = $('#surveyDataTableList').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "bSort" : false,
+                dom: 'Bfrtip',
+                "ajax": {
+                    "url": $.main_global_functions.base_url + "/api/survey/read.php",
+                    "type": "POST",
+                    "data": {
+                        // status:"1",
+                    }
+                },
+                "columns": [
+                    {"defaultContent": "","render": function (data, type, rowData, meta) {
+                      return meta.row + meta.settings._iDisplayStart + 1;
+                    }},
+                    {"data": "name"},
+                    {"defaultContent": "","render": function (data, type, rowData, meta) {
+                        return (rowData["gender"] == "F"?"Female":"Male");
+                    }},
+                    {"data": "age"},
+                    {"data": "mobile"},
+                    {"data": "body_temp"},
+                    {"defaultContent": "","render": function (data, type, rowData, meta) {
+                      return (rowData["diagnosed"] == 1)?"YES":"NO";
+                    }},
+                    {"defaultContent": "","render": function (data, type, rowData, meta) {
+                      return (rowData["encounter"] == 1)?"YES":"NO";
+                    }},
+                    {"defaultContent": "","render": function (data, type, rowData, meta) {
+                      return (rowData["vacinated"] == 1)?"YES":"NO";
+                    }},
+                    {"data": "country_name"},
+                    {"defaultContent": "", "render": $.survey_functions.refreshsurveyListActionRenderer}
+                ],
+                "fnDrawCallback": function( oSettings ) {
+                    $(".edit_menu").unbind("click");
+                    $(".edit_menu").click(function()
+                    {
+                      let data = $.survey_functions.survey_table.row($(this).parents('tr')).data();
+                      id = data["id"];      
+                      $.ajax({
+                        method: "GET",
+                        url: $.main_global_functions.base_url + "/api/survey/read.php",
+                        data: { id: id },
+                        success: function (result, textStatus, jqXHR) {
+                          console.log(textStatus + ": " + jqXHR.status);
+                          $("#modelId").modal("show");
+                          $("#id").val(result.data[0].id);
+                          $("#name").val(result.data[0].name);
+                          $("#age").val(result.data[0].age);
+                          $("#mobile").val(result.data[0].mobile);
+                          $("#gender").val(result.data[0].gender);
+                          $("#body_temp").val(result.data[0].body_temp);
+                          $("#diagnosed").val(result.data[0].diagnosed);
+                          $("#encounter").val(result.data[0].encounter);
+                          $("#country_id").val(result.data[0].country_id);
+                          $("#vacinated").val(result.data[0].vacinated);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                          console.log(textStatus + ": " + jqXHR.status + " " + errorThrown);
+                        },
+                      });           
+                    });
+
+                    $(".delete_menu").unbind("click");
+                    $(".delete_menu").click(function()
+                    {
+                        let data = $.survey_functions.survey_table.row($(this).parents('tr')).data();
+                        id = data["id"];                       
+                        $.main_global_functions.global_confirmation_callback = function()
+                        {
+                          $.main_global_functions.showGlobalLoadingWindow();
+                          $.ajax({
+                              method: "POST",
+                              url: $.main_global_functions.base_url + "/api/survey/delete.php",
+                              data: { id: id },
+                              success: function (result, textStatus, jqXHR) {
+                                $.main_global_functions.hideGlobalLoadingWindow();
+                                console.log(textStatus + ": " + jqXHR.status);
+                                $.main_global_functions.globalAlert("Records Deleted Successfuly.", "sucess");
+                                $.survey_functions.refreshsurveyList();
+                              },
+                              error: function (jqXHR, textStatus, errorThrown) {
+                                $.main_global_functions.hideGlobalLoadingWindow();
+                                $.main_global_functions.globalAlert("Records Was not Deleted.", "error");
+                                console.log(textStatus + ": " + jqXHR.status + " " + errorThrown);
+                              },
+                            });
+
+
+                        }
+                        $.main_global_functions.openGlobalConfirmationWindow("Do you really want to delete this test", "Yes", "No");
+                    });
+                }
+            });
+        }
+        else
+        {
+            $.survey_functions.survey_table.ajax.reload(null, false);
+        }
+    },
+    
+    refreshsurveyListAgeRenderer: function(text, type, rowData, meta)
+    {
+        content = "";
+        content += (rowData["gender"] == "F"?"Female":"Male");
+        return content;
+    },
+    refreshsurveyListActionRenderer: function(text, type, rowData, meta)
+    {
+        content = "";
+        content += '<div class="btn-group display-inline" data-id="1"> ';
+        content += '    <button class="btn btn-warning btn-xs edit_menu" title="Edit menu"> <span class="fa fa-edit"></span> </button> ';
+        content += '    <button class="btn btn-danger btn-xs delete_menu" title="Delete menu"> <span class="fa fa-trash "></span> </button> ';
+        content += '</div>';
+        return content;
+    },
+    
+    LoadCountries: function()
+    {
+        $.ajax({
+        url : $.main_global_functions.base_url + "/api/country/read.php",
+        method : "GET",
+        data:
+        {
+        },
+        success: function (result, textStatus, jqXHR) {
+            countries = result["data"];
+            $.survey_functions.country_list = [];
+            // $.main_global_functions.province_list = [{id:" ",text:"-- Select Province --"}];
+            countries.forEach(function(country,index){
+              // $.main_global_functions.province_list.push({id: province.provCode, text:province.provDesc});
+              $.survey_functions.country_list[index] = {id: country.id, text:country.name};
+              $('#country_id').append($("<option></option>").attr("value",country.id).text(country.name)); 
+            });
+            console.log(textStatus + ": " + jqXHR.status);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $.main_global_functions.globalAlert("Records Was not Deleted.", "error");
+            console.log(textStatus + ": " + jqXHR.status + " " + errorThrown);
+        },
+      });
+    },
+    initCustomStyle: function () {
+
+    },
+    initPlugins: function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    },  
+    initEventHandlers: function () {
+        $.survey_functions.initPlugins();
+        
+        $.survey_functions.cache_data = [];
+        // $.survey_functions.readdata();
+        $.survey_functions.refreshsurveyList();
+        $.survey_functions.LoadCountries();
+        $('#survey-form-container').on('submit', 'form', function(e){
+            e.preventDefault(); 
+            event.preventDefault();
+            let formdata = $(this).serializeArray();
+      
+            if (!formdata[0].value) {
+              $.ajax({
+                method: "POST",
+                url: $.main_global_functions.base_url + "/api/survey/create.php", //window.location.pathname = http://localhost/surveysample
+                data: formdata,
+                success: function (result, textStatus, jqXHR) {
+                  console.log(textStatus + ": " + jqXHR.status);
+                  $.main_global_functions.globalAlert("Records Created Successfuly.", "success");
+                  $.survey_functions.refreshsurveyList();
+                  $.survey_functions.clearform();
+                  $("#modelId").modal("hide");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                  console.log(textStatus + ": " + jqXHR.status + " " + errorThrown);
+                  $.main_global_functions.globalAlert("Records Was Not Created.", "error");
+
+                },
+              });
+            } else {
+              $.ajax({
+                method: "POST",
+                url: $.main_global_functions.base_url + "/api/survey/update.php",
+                data: formdata,
+                success: function (result, textStatus, jqXHR) {
+                  console.log(textStatus + ": " + jqXHR.status);
+                  $.main_global_functions.globalAlert("Records Updated Successfuly.", "success");
+                  $.survey_functions.refreshsurveyList();
+                  $.survey_functions.clearform();
+                  $("#modelId").modal("hide");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                  console.log(textStatus + ": " + jqXHR.status + " " + errorThrown);
+                  $.main_global_functions.globalAlert("Records Was Not Updated.", "error");
+                },
+              });
+            }
+        });
+    },
+    clearform: function() 
+    {
+        $("#id").val("");
+        $("#name").val("");
+        $("#age").val("");
+        $("#mobile").val("");
+        $("#gender").val("");
+        $("#body_temp").val("");
+        $("#diagnosed").val("");
+        $("#encounter").val("");
+        $("#vacinated").val("");
+        $("#country_id").val("");
+    },
+};
+$(function () {
+    $.survey_functions.initEventHandlers();
+});
+
+</script>
