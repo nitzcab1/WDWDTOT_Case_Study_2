@@ -19,15 +19,20 @@ COVID-19 health declaration with admin dashboard WEB APP.
 ## Document Structure
     > api
     > class
+    > contributors
     > css
+    > fonts
     > img
     > js
     > pages
     > plugins
     > private
+    > sql
     > index.html
     > README.md
 
 ## References
 * Template: [AdminLTE 3](https://adminlte.io/themes/v3/)
 * Master list for Country Sql : [sql-list-of-countries](https://github.com/davepartner/sql-list-of-countries)
+* SQL POPULATOR : [Database Populator](https://www.luigicaradonna.it/projects/populator)
+

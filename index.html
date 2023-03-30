@@ -1,10 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sample CRUD</title>
-
+    <title>Covid-19 Survey</title>
+    <link rel="icon" type="image/x-icon" href="img/icon1.png">
     <!-- Google Font: Source Sans Pro -->
     <link
       rel="stylesheet"
@@ -15,7 +18,7 @@
     <!-- Ionicons -->
     <link
       rel="stylesheet"
-      href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+      href="css/ionicons.min.css"
     />
     <!-- Tempusdominus Bootstrap 4 -->
     <link
@@ -29,8 +32,7 @@
     />
     <!-- JQVMap -->
     <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css" />
-    <!-- Theme style -->
-    <link rel="stylesheet" href="css/adminlte.min.css" />
+    
     <!-- overlayScrollbars -->
     <link
       rel="stylesheet"
@@ -40,6 +42,15 @@
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css" />
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css" />
+    
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="css/toastr.min.css" />
+    <link rel="stylesheet" href="css/adminlte.min.css" />
   </head>
   <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -49,13 +60,12 @@
       >
         <img
           class="animation__shake"
-          src="img/AdminLTELogo.png"
-          alt="AdminLTELogo"
+          src="img/icon.png"
+          alt="Covid-19 Survey Logo"
           height="60"
           width="60"
         />
       </div>
-
       <!-- Navbar -->
       <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -74,12 +84,12 @@
         <!-- Brand Logo -->
         <a href="index.html" class="brand-link">
           <img
-            src="img/AdminLTELogo.png"
-            alt="AdminLTE Logo"
+            src="img/icon1.png"
+            alt="Covid-19 Survey Logo"
             class="brand-image img-circle elevation-3"
             style="opacity: 0.8"
           />
-          <span class="brand-text font-weight-light">Sample CRUD</span>
+          <span class="brand-text font-weight-light">Covid-19 Survey</span>
         </a>
 
         <!-- Sidebar -->
@@ -95,38 +105,46 @@
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
               <li class="nav-item">
-                <a id="dashboard" href="#" class="nav-link">
+                <a id="dashboard" href="#" class="nav-link" data-content="./pages/dashboard.html" data-source="">
                   <i class="nav-icon fas fa-chart-bar"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a id="crudform" href="#" class="nav-link">
+                <a id="crudform" href="#" class="nav-link" data-content="./pages/crud.html" data-source="">
                   <i class="nav-icon fas fa-edit"></i>
-                  <p>CRUD Form</p>
+                  <p>CRUD Form (Sample by Mr. Rufino John Aguilar) </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="surveyform" href="#" class="nav-link" data-content="./pages/survey.html" data-source="">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>Survey Form</p>
                 </a>
               </li>
               <li class="nav-header">Contributors</li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" data-content="" data-source="">
                 <i class="nav-icon far fa-circle text-info"></i>
                 <p>Jouperse F. Cabaluna</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" data-content="https://nitzcab1.github.io/" data-source="contributor">
+                  <!-- <a href="#" class="nav-link" data-content="./contributors/John/index.html" data-source="contributor"> -->
                 <i class="nav-icon far fa-circle text-info"></i>
                 <p>John Liebnitz O. Cabaluna</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" data-content="https://nazhville2023.github.io/NUgethub.io/" data-source="contributor">
+                <!-- <a href="#" class="nav-link" data-content="./contributors/Nazell/index.html" data-source="contributor"> -->
                 <i class="nav-icon far fa-circle text-info"></i>
                 <p>Nazell Ubanan</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" data-content="https://d3cs.github.io/" data-source="contributor">
                 <i class="nav-icon far fa-circle text-info"></i>
                 <p>Decshel Nebria</p>
                 </a>
@@ -140,8 +158,22 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-       <!-- content goes here.. -->
-        
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1 class="m-0" id="pageTitle">Dashboard</h1>
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+          
+        </section>
       </div>
       <!-- /.content-wrapper -->
       <footer class="main-footer">
@@ -184,26 +216,29 @@
     <script src="plugins/summernote/summernote-bs4.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    
+    <!-- datatables js -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <!-- AdminLTE App -->
+    <script src="js/toastr.min.js"></script>
     <script src="js/adminlte.js"></script>
-    <script>
-        $(function(){
-        //   $('.sidebar .nav-link').click(function(){
-        //         let page = $(this).attr('href');
-        //         // alert(page);
-				// //$('#content').html( page );
-        //         // $('#content').load(`./pages/${page.substring(1)}.html`);
-        //         $('#content').load(`./pages/${page.substring(1)}.html`);
-        //         return false;
-        //     });
-            $('#dashboard').click(function(){
-                $('.content-wrapper').load('./pages/dashboard.html');
-            });
-            $('#crudform').click(function(){
-                $('.content-wrapper').load('./pages/crud.html');
-            });
-        });
-    </script>
+    
+    
+    <script type='text/javascript' src="js/custom/main.js"></script>
+    <div id="customjs">
+
+    </div>
     
   </body>
 </html>

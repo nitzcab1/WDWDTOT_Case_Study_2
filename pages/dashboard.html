@@ -1,48 +1,148 @@
-<div class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-6">
-        <h1 class="m-0">CRUD FROM DASHBOARD</h1>
+
+<div class="row">
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3 id="numberofprofiles">0</h3>
+        <p>Number of Profiles </p>
       </div>
-      <!-- /.col -->
-      <!-- /.col -->
+      <div class="icon">
+        <i class="ion ion-person"></i>
+      </div>
     </div>
-    <!-- /.row -->
   </div>
-  <!-- /.container-fluid -->
+  <!-- ./col -->
+  
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3 id="numberofsurvey">0</h3>
+        <p>Number of Survey </p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person"></i>
+      </div>
+    </div>
+  </div>
+  <!-- ./col -->
+  
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-success">
+      <div class="inner">
+        <h3 id="totaladults">0</h3>
+
+        <p>ADULT</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-secondary">
+      <div class="inner">
+        <h3 id="totalminor">0</h3>
+
+        <p>MINOR</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3 id="totalencounter">0</h3>
+        <p>COVID-19 ENCOUNTER</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-warning">
+      <div class="inner">
+        <h3 id="totalvacinated">0</h3>
+
+        <p>VACINATED</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-danger">
+      <div class="inner">
+        <h3 id="totalfever">0</h3>
+
+        <p>FEVER</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person"></i>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-secondary">
+      <div class="inner">
+        <h3 id="totalforeigner">0</h3>
+
+        <p>FOREIGNER</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person"></i>
+      </div>
+    </div>
+  </div>
+  <!-- ./col -->
 </div>
-<!-- /.content-header -->
-
-<!-- Main content -->
-<section class="content">
-  <div class="row">
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-info">
-        <div class="inner">
-          <h3 id="numberofprofiles"></h3>
-
-          <p>Number of Profiles</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-person"></i>
-        </div>
-      </div>
-    </div>
-    <!-- ./col -->
-  </div>
-</section>
 
 <script>
   $(function () {
 
     $.ajax({
       method: "GET",
-      url: window.location.origin + '/'+ window.location.pathname.split( '/' )[1] + "/api/dashboarddata.php",
+      url: window.location.origin + '/'+ window.location.pathname.split( '/' )[1] + "/api/crud/dashboarddata.php",
       success: function (result, textStatus, jqXHR) {
         console.log(textStatus + ": " + jqXHR.status);
-        console.log(result.data[0].numofprofiles);
+        // console.log(result.data[0].numofprofiles);
         $("#numberofprofiles").text(result.data[0].numofprofiles);
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(textStatus + ": " + jqXHR.status + " " + errorThrown);
+      },
+    });
+    $.ajax({
+      method: "GET",
+      url: window.location.origin + '/'+ window.location.pathname.split( '/' )[1] + "/api/survey/dashboarddata.php",
+      success: function (result, textStatus, jqXHR) {
+        // console.log(result.data);
+        
+        // $("#numberofsurvey").text()
+        $("#totaladults").text((result.data.adults[0] !== undefined || result.data.adults[0].length > 0?result.data.adults[0].count:0))
+        $("#totalminor").text((result.data.minors[0] !== undefined || result.data.minors[0].length > 0?result.data.minors[0].count:0))
+        $("#totalencounter").text((result.data.encounter[0] !== undefined || result.data.encounter[0].length > 0?result.data.encounter[0].count:0))
+        $("#totalvacinated").text((result.data.vacinated[0] !== undefined || result.data.vacinated[0].length > 0?result.data.vacinated[0].count:0))
+        $("#totalfever").text((result.data.fever[0] !== undefined || result.data.fever[0].length > 0?result.data.fever[0].count:0))
+        $("#totalforeigner").text((result.data.foreigner[0] !== undefined || result.data.foreigner[0].length > 0?result.data.foreigner[0].count:0))
+        $("#numberofsurvey").text((result.data.all[0] !== undefined || result.data.all[0].length > 0?result.data.all[0].count:0))
+        // $("#numberofsurvey").text(result.data[0].numofprofiles);
+        // $("#numberofsurvey").text(result.data[0].numofprofiles);
+        console.log(textStatus + ": " + jqXHR.status);
+        // console.log(result.data[0].numofprofiles);
+        // $("#numberofprofiles").text(result.data[0].numofprofiles);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log(textStatus + ": " + jqXHR.status + " " + errorThrown);
